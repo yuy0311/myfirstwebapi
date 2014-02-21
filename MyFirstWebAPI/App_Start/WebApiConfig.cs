@@ -1,4 +1,5 @@
 ﻿using Microsoft.Practices.Unity;
+using MyFirstWebAPI.Controllers;
 using MyFirstWebAPI.Models;
 using MyFirstWebAPI.Utility;
 using System;
@@ -14,6 +15,10 @@ namespace MyFirstWebAPI
         {
             var container = new UnityContainer();
             container.RegisterType<IProductRepository, ProductRepository>(new HierarchicalLifetimeManager());
+            container.RegisterType<AdminController>(new InjectionConstructor(
+                container.Resolve<IProductRepository>()
+                ,"Admin"
+                ));
             config.DependencyResolver = new UnityResolver(container);
 
             // Web API configuration and services
