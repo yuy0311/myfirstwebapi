@@ -9,9 +9,11 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using MyFirstWebAPI.Models;
+using System.Threading.Tasks;
 
 namespace MyFirstWebAPI.Controllers
 {
+    [RoutePrefix("api/admin")]
     public class AdminController : ApiController
     {
         private IProductRepository repository;
@@ -24,10 +26,37 @@ namespace MyFirstWebAPI.Controllers
         }
       
         // GET api/Admin
+        [Route("products")]
         public IQueryable<Product> GetProdcuts()
         {
-            return this.repository.GetAll();
+            return this.repository.GetAllProducts();
         }
+
+        [Route("products/{id:int}")]
+        [ResponseType(typeof(Product))]
+        public async Task<IHttpActionResult> GetProductByID(int id)
+        {
+            var product = await this.repository.GetProductByID(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(product);
+        }
+
+        [Route("orders")]
+        public IQueryable<Order> GetOrders()
+        {
+            return this.repository.GetAllOrders();
+        }
+
+        [Route("orderdetails")]
+        public IQueryable<OrderDetail> GetOrderDetails()
+        {
+            return this.repository.GetAllOrderDetails();
+        }
+
         /*
         // GET api/Admin/5
         [ResponseType(typeof(Order))]
