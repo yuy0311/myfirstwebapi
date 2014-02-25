@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyFirstWebAPI.Models.Products;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,9 +10,10 @@ namespace MyFirstWebAPI.Models
 {
     public interface IProductRepository
     {
-        IQueryable<Product> GetAllProducts();
-        Task<Product> GetProductByID(int id);
-        IQueryable<Order> GetAllOrders();
+        IQueryable<ProductWrapper> GetAllProducts();
+        Task<ProductWrapper> GetProductByID(int id);
+        IQueryable<OrderDataWrapper> GetAllOrders();
+        Task<OrderDataWrapper> GetOrderByID(int id);
         IQueryable<OrderDetail> GetAllOrderDetails();
     }
 }

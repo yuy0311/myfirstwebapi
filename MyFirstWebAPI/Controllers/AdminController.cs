@@ -10,6 +10,8 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using MyFirstWebAPI.Models;
 using System.Threading.Tasks;
+using MyFirstWebAPI.Models.Products;
+using MyFirstWebAPI.Utility;
 
 namespace MyFirstWebAPI.Controllers
 {
@@ -27,7 +29,7 @@ namespace MyFirstWebAPI.Controllers
       
         // GET api/Admin
         [Route("products")]
-        public IQueryable<Product> GetProdcuts()
+        public IQueryable<ProductWrapper> GetProdcuts()
         {
             return this.repository.GetAllProducts();
         }
@@ -46,9 +48,23 @@ namespace MyFirstWebAPI.Controllers
         }
 
         [Route("orders")]
-        public IQueryable<Order> GetOrders()
+        public IQueryable<OrderDataWrapper> GetOrders()
         {
             return this.repository.GetAllOrders();
+        }
+
+        [Route("orders/{id:int}")]
+        [ResponseType(typeof(Order))]
+        public async Task<IHttpActionResult> GetOrder(int id)
+        {
+            
+            var order = await this.repository.GetOrderByID(id);
+            if (order == null)
+            {
+                return NotFound();
+            }
+            return new APIActionResult(order,Request);
+            //return Ok(order);
         }
 
         [Route("orderdetails")]
