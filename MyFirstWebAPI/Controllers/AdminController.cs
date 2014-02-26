@@ -48,23 +48,27 @@ namespace MyFirstWebAPI.Controllers
         }
 
         [Route("orders")]
-        public IQueryable<OrderDataWrapper> GetOrders()
+        public HttpResponseMessage GetOrders()
         {
-            return this.repository.GetAllOrders();
+            APIResponseWrapper ordersReturn = new APIResponseWrapper();
+            ordersReturn.data = this.repository.GetAllOrders();
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, ordersReturn);
+            return response;
         }
 
         [Route("orders/{id:int}")]
         [ResponseType(typeof(Order))]
-        public async Task<IHttpActionResult> GetOrder(int id)
+        public async Task<HttpResponseMessage> GetOrder(int id)
         {
-            
+            APIResponseWrapper ordersReturn = new APIResponseWrapper();
             var order = await this.repository.GetOrderByID(id);
             if (order == null)
             {
-                return NotFound();
+                return Request.CreateResponse(HttpStatusCode.OK, ordersReturn);
             }
-            return new APIActionResult(order,Request);
-            //return Ok(order);
+            ordersReturn.data = order;
+            //return new APIActionResult(order,Request);
+            return Request.CreateResponse(HttpStatusCode.OK, ordersReturn);
         }
 
         [Route("orderdetails")]

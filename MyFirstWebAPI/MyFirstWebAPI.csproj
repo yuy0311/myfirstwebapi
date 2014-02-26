@@ -234,6 +234,7 @@
     <Compile Include="Models\OrderDetail.cs">
       <DependentUpon>WebAPIModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Orders\OrderDetailsWrapper.cs" />
     <Compile Include="Models\Product.cs">
       <DependentUpon>WebAPIModel.tt</DependentUpon>
     </Compile>

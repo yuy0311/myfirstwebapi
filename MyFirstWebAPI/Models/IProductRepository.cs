@@ -13,7 +13,7 @@ namespace MyFirstWebAPI.Models
         IQueryable<ProductWrapper> GetAllProducts();
         Task<ProductWrapper> GetProductByID(int id);
         IQueryable<OrderDataWrapper> GetAllOrders();
-        Task<OrderDataWrapper> GetOrderByID(int id);
+        Task<Order> GetOrderByID(int id);
         IQueryable<OrderDetail> GetAllOrderDetails();
     }
 }

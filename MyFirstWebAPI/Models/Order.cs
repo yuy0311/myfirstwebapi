@@ -21,7 +21,7 @@ namespace MyFirstWebAPI.Models
     
         public int Id { get; set; }
         public string Customer { get; set; }
-        public DateTime Date { get; set; }
+        public System.DateTime Date { get; set; }
     
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }

@@ -18,6 +18,7 @@ namespace MyFirstWebAPI.Models
         public MyFirstWebAPIDBEntities()
             : base("name=MyFirstWebAPIDBEntities")
         {
+
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
