@@ -40,7 +40,7 @@ namespace MyFirstWebAPI.Models
                 orderid = x.Id,
                 customer  = x.Customer,
                 date = x.Date,
-                details = x.OrderDetails.AsQueryable().Include(b=>b.Product).Select(AsOrderDetailDTO)
+                details = x.OrderDetails.AsQueryable().Select(AsOrderDetailDTO)
             };
      
         public IQueryable<ProductWrapper> GetAllProducts()
@@ -61,20 +61,30 @@ namespace MyFirstWebAPI.Models
             return db.Orders.Select(ASOrderDto);
         }
 
-        public Task<Order> GetOrderByID(int id)
+        public Task<OrderDataWrapper> GetOrderByID(int id)
         {
-            /*
             return db.Orders
                 .Where(o => o.Id == id)
-                .Select(ASOrderDto)
-                .FirstOrDefaultAsync();
-             */
-            var results = from order in db.Orders
-                          from orderdetails in db.OrderDetails
-                          where order.Id == orderdetails.OrderId && order.Id == id
-                          select order;
-            ICollection<Order> i = results.ToList<Order>();
-            return results.FirstOrDefaultAsync();
+                .Select(ASOrderDto).FirstOrDefaultAsync();
+        }
+
+
+        public Task<OrderDataWrapper> GetOrderLagacyByID(int id)
+        {
+            Order order = db.Orders.Where(o => o.Id == id).Single();
+
+            OrderDataWrapper odw = new OrderDataWrapper();
+            odw.orderid = order.Id;
+            odw.customer = order.Customer;
+            odw.date = order.Date;
+            odw.details =  order.OrderDetails.AsQueryable().Include(o => o.Product).Select(AsOrderDetailDTO);
+            return Task.FromResult<OrderDataWrapper>(odw);
+        }
+
+        public ICollection<OrderDataWrapper> GetOrdersLagacy()
+        {
+
+            return null;
         }
 
         public IQueryable<OrderDetail> GetAllOrderDetails()

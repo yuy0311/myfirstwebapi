@@ -58,7 +58,7 @@ namespace MyFirstWebAPI.Controllers
 
         [Route("orders/{id:int}")]
         [ResponseType(typeof(Order))]
-        public async Task<HttpResponseMessage> GetOrder(int id)
+        public  async Task<HttpResponseMessage> GetOrder(int id)
         {
             APIResponseWrapper ordersReturn = new APIResponseWrapper();
             var order = await this.repository.GetOrderByID(id);
@@ -68,6 +68,33 @@ namespace MyFirstWebAPI.Controllers
             }
             ordersReturn.data = order;
             //return new APIActionResult(order,Request);
+            return Request.CreateResponse(HttpStatusCode.OK, ordersReturn);
+        }
+
+        [Route("orderLegacys/{id:int}")]
+        [ResponseType(typeof(Order))]
+        public HttpResponseMessage GetOrderByIDLegacy(int id)
+        {
+            APIResponseWrapper ordersReturn = new APIResponseWrapper();
+            var order = this.repository.GetOrderLagacyByID(id);
+            if (order == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, ordersReturn);
+            }
+            ordersReturn.data = order;
+            return Request.CreateResponse(HttpStatusCode.OK, ordersReturn);
+        }
+
+        [Route("orderLegacys")]
+        public async Task<HttpResponseMessage> GetOrderLegacy(int id)
+        {
+            APIResponseWrapper ordersReturn = new APIResponseWrapper();
+            var order = this.repository.GetOrdersLagacy();
+            if (order == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, ordersReturn);
+            }
+            ordersReturn.data = order;
             return Request.CreateResponse(HttpStatusCode.OK, ordersReturn);
         }
 

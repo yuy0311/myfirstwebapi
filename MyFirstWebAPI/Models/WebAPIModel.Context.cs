@@ -15,10 +15,11 @@ namespace MyFirstWebAPI.Models
     
     public partial class MyFirstWebAPIDBEntities : DbContext
     {
+        private const string connectionstring = @"YANG-WINX7\YANGSQLEXPRESS;initial catalog=MyFirstWebAPI;user id=sa;password=1q2w3e4r;MultipleActiveResultSets=True;App=EntityFramework";
         public MyFirstWebAPIDBEntities()
-            : base("name=MyFirstWebAPIDBEntities")
+            : base("MyFirstWebAPIDBEntities")
         {
-
+           // this.Database.Connection.ConnectionString = connectionstring;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

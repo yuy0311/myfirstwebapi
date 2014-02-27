@@ -1,4 +1,5 @@
-﻿using MyFirstWebAPI.Models.Products;
+﻿using MyFirstWebAPI.Models.Orders;
+using MyFirstWebAPI.Models.Products;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,10 @@ namespace MyFirstWebAPI.Models
         IQueryable<ProductWrapper> GetAllProducts();
         Task<ProductWrapper> GetProductByID(int id);
         IQueryable<OrderDataWrapper> GetAllOrders();
-        Task<Order> GetOrderByID(int id);
+        Task<OrderDataWrapper> GetOrderByID(int id);
         IQueryable<OrderDetail> GetAllOrderDetails();
+
+        Task<OrderDataWrapper> GetOrderLagacyByID(int id);
+        ICollection<OrderDataWrapper> GetOrdersLagacy();
     }
 }
