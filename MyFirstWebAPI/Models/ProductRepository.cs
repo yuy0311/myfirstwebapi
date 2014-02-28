@@ -8,6 +8,7 @@ using System.Web.Http;
 using MyFirstWebAPI.Models.Products;
 using System.Linq.Expressions;
 using MyFirstWebAPI.Models.Orders;
+using System.Threading;
 
 namespace MyFirstWebAPI.Models
 {
@@ -71,19 +72,22 @@ namespace MyFirstWebAPI.Models
 
         public Task<OrderDataWrapper> GetOrderLagacyByID(int id)
         {
-            Order order = db.Orders.Where(o => o.Id == id).Single();
+            return Task.Run(()=> this._GetOrderLagacyByIDInternal(id));
+        }
 
+        private  OrderDataWrapper _GetOrderLagacyByIDInternal(int id)
+        {
+            Order order = db.Orders.Where(o => o.Id == id).Single();
             OrderDataWrapper odw = new OrderDataWrapper();
             odw.orderid = order.Id;
             odw.customer = order.Customer;
             odw.date = order.Date;
-            odw.details =  order.OrderDetails.AsQueryable().Include(o => o.Product).Select(AsOrderDetailDTO);
-            return Task.FromResult<OrderDataWrapper>(odw);
+            odw.details = order.OrderDetails.AsQueryable().Include(o => o.Product).Select(AsOrderDetailDTO);
+            return odw;
         }
 
-        public ICollection<OrderDataWrapper> GetOrdersLagacy()
+        public Task<ICollection<OrderDataWrapper>> GetOrdersLagacy()
         {
-
             return null;
         }
 

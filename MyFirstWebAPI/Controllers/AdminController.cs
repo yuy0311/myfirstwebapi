@@ -73,10 +73,10 @@ namespace MyFirstWebAPI.Controllers
 
         [Route("orderLegacys/{id:int}")]
         [ResponseType(typeof(Order))]
-        public HttpResponseMessage GetOrderByIDLegacy(int id)
+        public async Task<HttpResponseMessage> GetOrderByIDLegacy(int id)
         {
             APIResponseWrapper ordersReturn = new APIResponseWrapper();
-            var order = this.repository.GetOrderLagacyByID(id);
+            var order = await this.repository.GetOrderLagacyByID(id);
             if (order == null)
             {
                 return Request.CreateResponse(HttpStatusCode.OK, ordersReturn);
@@ -89,7 +89,7 @@ namespace MyFirstWebAPI.Controllers
         public async Task<HttpResponseMessage> GetOrderLegacy(int id)
         {
             APIResponseWrapper ordersReturn = new APIResponseWrapper();
-            var order = this.repository.GetOrdersLagacy();
+            var order = await this.repository.GetOrdersLagacy();
             if (order == null)
             {
                 return Request.CreateResponse(HttpStatusCode.OK, ordersReturn);

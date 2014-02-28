@@ -18,6 +18,6 @@ namespace MyFirstWebAPI.Models
         IQueryable<OrderDetail> GetAllOrderDetails();
 
         Task<OrderDataWrapper> GetOrderLagacyByID(int id);
-        ICollection<OrderDataWrapper> GetOrdersLagacy();
+        Task<ICollection<OrderDataWrapper>> GetOrdersLagacy();
     }
 }
