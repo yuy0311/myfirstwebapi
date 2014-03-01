@@ -9,12 +9,20 @@ using MyFirstWebAPI.Models.Products;
 using System.Linq.Expressions;
 using MyFirstWebAPI.Models.Orders;
 using System.Threading;
+using System.Data.Entity.Core.EntityClient;
+using MyFirstWebAPI.Utility;
 
 namespace MyFirstWebAPI.Models
 {
     public class ProductRepository : IDisposable, IProductRepository
     {
-        private MyFirstWebAPIDBEntities db = new MyFirstWebAPIDBEntities();
+        private MyFirstWebAPIDBEntities db;
+        public ProductRepository()
+        {
+            string connectionstr = ConnectionStringBuilder.getEntityConnectionStr(@"YANG-WINX7\YANGSQLEXPRESS","MyFirstWebAPI","Models.WebAPIModel","sa","1q2w3e4r");
+            EntityConnection connection = new EntityConnection(connectionstr);
+             db = new MyFirstWebAPIDBEntities(connection);
+        }
              
         private static readonly Expression<Func<OrderDetail, OrderDetailsWrapper>> AsOrderDetailDTO =
             x => new OrderDetailsWrapper
@@ -68,7 +76,6 @@ namespace MyFirstWebAPI.Models
                 .Where(o => o.Id == id)
                 .Select(ASOrderDto).FirstOrDefaultAsync();
         }
-
 
         public Task<OrderDataWrapper> GetOrderLagacyByID(int id)
         {

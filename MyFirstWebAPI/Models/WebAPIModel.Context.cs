@@ -11,15 +11,15 @@ namespace MyFirstWebAPI.Models
 {
     using System;
     using System.Data.Entity;
+    using System.Data.Entity.Core.EntityClient;
     using System.Data.Entity.Infrastructure;
     
     public partial class MyFirstWebAPIDBEntities : DbContext
     {
-        private const string connectionstring = @"YANG-WINX7\YANGSQLEXPRESS;initial catalog=MyFirstWebAPI;user id=sa;password=1q2w3e4r;MultipleActiveResultSets=True;App=EntityFramework";
-        public MyFirstWebAPIDBEntities()
-            : base("MyFirstWebAPIDBEntities")
+        public MyFirstWebAPIDBEntities(EntityConnection connection)
+            : base(connection,true)
         {
-           // this.Database.Connection.ConnectionString = connectionstring;
+            Console.WriteLine("init context");
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
