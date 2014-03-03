@@ -3,3 +3,6 @@ MyFirstWebAPI/obj/Release/MyFirstWebAPI.csproj.FileListAbsolute.txt
 MyFirstWebAPI/obj/
 packages/
 MyFirstWebAPI.Tests/bin/
+ConsoleProgram/bin/
+ConsoleProgram/obj/
+MyFirstWebAPI.Tests/obj/
