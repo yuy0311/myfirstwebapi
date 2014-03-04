@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MyFirstWebAPI.Models.Utility;
+using MyFirstWebAPI.Utility;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity.Core.EntityClient;
 using System.Data.SqlClient;
@@ -7,12 +9,12 @@ using System.Web;
 
 namespace MyFirstWebAPI.Models.Connection
 {
-    public class EntityConnectionHelper : IConnection
+    public class SingleEntityConnectionHelper : IDBConnection
     {
         private string context;
         private string module;
         private const string providerName = "System.Data.SqlClient";
-        public EntityConnectionHelper(string context,string module)
+        public SingleEntityConnectionHelper(string context,string module)
         {
             this.context = context;
             this.module = module;
@@ -24,20 +26,28 @@ namespace MyFirstWebAPI.Models.Connection
             SqlConnectionStringBuilder sqlBuilder =
                 new SqlConnectionStringBuilder();
             // Set the properties for the data source.
-            sqlBuilder.DataSource = "";//serverName; this shall be read from xml file
-            sqlBuilder.InitialCatalog = "";//databaseName;
+            sqlBuilder.DataSource = AppConfigXMLParser.getXMLValue(module,AppSettingsConstant.SERVER);//serverName; this shall be read from xml file
+            sqlBuilder.InitialCatalog = AppConfigXMLParser.getXMLValue(module, AppSettingsConstant.DATABASE);//databaseName;
             //if the integratedSecurity
-            if(true)
+            Object o = StringAdditions.ConvertToBoolean(AppConfigXMLParser.getXMLValue(module, AppSettingsConstant.ADINTERGRATED));
+            if(o != null)
             {
-                sqlBuilder.IntegratedSecurity = true;//true;
+                if ((Boolean)o)
+                {
+                    sqlBuilder.IntegratedSecurity = true;//true;
+                }
+                else
+                {
+                    sqlBuilder.IntegratedSecurity = false;
+                    sqlBuilder.UserID = AppConfigXMLParser.getXMLValue(module, AppSettingsConstant.DBUSERNAME);
+                    sqlBuilder.Password = AppConfigXMLParser.getXMLValue(module, AppSettingsConstant.DBPWD);
+                }
             }
             else
             {
-                sqlBuilder.IntegratedSecurity = false;
-                sqlBuilder.UserID = "";//userid;
-                sqlBuilder.Password = "";//pwd;
+                throw new Exception("AppConfig XML AD Intergration value is correct");
             }
-
+            
 
             // Build the SqlConnection connection string.
             string providerString = sqlBuilder.ToString();

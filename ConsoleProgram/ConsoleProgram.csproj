@@ -45,6 +45,12 @@
     <Compile Include="ConsoleProgram.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MyFirstWebAPI\MyFirstWebAPI.csproj">
+      <Project>{918d7b0b-bb80-4035-8df4-088247225d68}</Project>
+      <Name>MyFirstWebAPI</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

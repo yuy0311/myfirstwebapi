@@ -5,11 +5,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="400aff984cbf42538536248f39c4013c" Name="Diagram1">
-        <EntityTypeShape EntityType="MyFirstWebAPIDBModel.Order" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyFirstWebAPIDBModel.OrderDetail" Width="1.5" PointX="3.125" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyFirstWebAPIDBModel.Product" Width="1.5" PointX="5.375" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="MyFirstWebAPIDBModel.FK_OrderDetail_Order" ManuallyRouted="false" />
-        <AssociationConnector Association="MyFirstWebAPIDBModel.FK_OrderDetail_Product" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MyFirstWebAPIDBModel.Order" Width="1.5" PointX="0.75" PointY="5.125" />
+        <EntityTypeShape EntityType="MyFirstWebAPIDBModel.OrderDetail" Width="1.5" PointX="3" PointY="4.875" />
+        <EntityTypeShape EntityType="MyFirstWebAPIDBModel.Product" Width="1.5" PointX="0.75" PointY="8" />
+        <AssociationConnector Association="MyFirstWebAPIDBModel.FK_OrderDetail_Order1" />
+        <AssociationConnector Association="MyFirstWebAPIDBModel.FK_OrderDetail_Product1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

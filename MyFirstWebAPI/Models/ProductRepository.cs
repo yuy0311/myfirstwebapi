@@ -11,16 +11,17 @@ using MyFirstWebAPI.Models.Orders;
 using System.Threading;
 using System.Data.Entity.Core.EntityClient;
 using MyFirstWebAPI.Utility;
+using MyFirstWebAPI.Models.Connection;
 
 namespace MyFirstWebAPI.Models
 {
     public class ProductRepository : IDisposable, IProductRepository
     {
         private MyFirstWebAPIDBEntities db;
-        public ProductRepository()
+        public ProductRepository(IDBConnection myconntection)
         {
-            string connectionstr = ConnectionStringBuilder.getEntityConnectionStr(@"YANG-WINX7\YANGSQLEXPRESS","MyFirstWebAPI","Models.WebAPIModel","sa","1q2w3e4r");
-            EntityConnection connection = new EntityConnection(connectionstr);
+            //string connectionstr = ConnectionStringBuilder.getEntityConnectionStr(@"YANG-WINX7\YANGSQLEXPRESS","MyFirstWebAPIDB","Models.WebAPIModel","sa","1q2w3e4r");
+            EntityConnection connection = new EntityConnection(myconntection.connectionString());
              db = new MyFirstWebAPIDBEntities(connection);
         }
              

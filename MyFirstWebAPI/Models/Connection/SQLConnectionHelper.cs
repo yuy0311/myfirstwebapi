@@ -5,7 +5,7 @@ using System.Web;
 
 namespace MyFirstWebAPI.Models.Connection
 {
-    public class SQLConnectionHelper : IConnection
+    public class SQLConnectionHelper : IDBConnection
     {
         private string module;
         

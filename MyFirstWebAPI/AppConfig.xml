@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<application>
+  <RegKey></RegKey>
+  <Modules>
+    <Timetable source="aplus" isMultiple="false">
+      <server>YANG-WINX7\YANGSQLEXPRESS</server>
+      <db>MyFirstWebAPIDB</db>
+      <adintegrated>true</adintegrated>
+      <username>sa</username>
+      <password>1q2w3e4r</password>
+    </Timetable>
+    <SchoolAdmin source="sas">
+      <server>YANG-WINX7\YANGSQLEXPRESS</server>
+      <db></db>
+      <adintegrated>true</adintegrated>
+      <username>sa</username>
+      <password>1q2w3e4r</password>
+    </SchoolAdmin>
+    <RollMarking source="awms">
+      <server>YANG-WINX7\YANGSQLEXPRESS</server>
+      <db></db>
+      <adintegrated>true</adintegrated>
+      <username></username>
+      <password></password>
+    </RollMarking>
+  </Modules>
+</application>

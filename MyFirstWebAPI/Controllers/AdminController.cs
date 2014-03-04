@@ -19,12 +19,11 @@ namespace MyFirstWebAPI.Controllers
     public class AdminController : ApiController
     {
         private IProductRepository repository;
-        private String name;
-
+        private String controllerName;
         public AdminController(IProductRepository repository, String controllerName)
         {
             this.repository = repository;
-            this.name = controllerName;
+            this.controllerName = controllerName;
         }
       
         // GET api/Admin

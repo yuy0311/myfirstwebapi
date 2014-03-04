@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
+using MyFirstWebAPI.Utility;
+using MyFirstWebAPI.Models.Utility;
 
 namespace MyFirstWebAPI
 {
@@ -12,9 +14,8 @@ namespace MyFirstWebAPI
         static void Main(string[] args)
         {
             //Console.WriteLine("Hello WOrld");
-            MyClass myclass = new MyClass();
-            Myobject r = myclass.ReadValue();
-            Console.WriteLine(r.getMYName());
+            AppConfigXMLParser.getXMLValue("Timetable", "server");
+            AppConfigXMLParser.getAttributeValue("Timetable", "name");
         }
     }
 

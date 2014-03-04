@@ -15,7 +15,7 @@
     <AssemblyName>MyFirstWebAPI</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>false</UseIISExpress>
+    <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -153,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -225,7 +226,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Connection\MultiplyEntityConnectionHelper.cs" />
+    <Compile Include="Models\Connection\SingleEntityConnectionHelper.cs" />
+    <Compile Include="Models\Connection\IDBConnection.cs" />
+    <Compile Include="Models\Connection\SQLConnectionHelper.cs" />
     <Compile Include="Models\IProductRepository.cs" />
     <Compile Include="Models\Order.cs">
       <DependentUpon>WebAPIModel.tt</DependentUpon>
@@ -258,9 +262,16 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\APIActionResult.cs" />
+    <Compile Include="Utility\AppConfigXMLParser.cs" />
+    <Compile Include="AppSettingsConstant.cs" />
+    <Compile Include="Utility\ConnectionStringBuilder.cs" />
+    <Compile Include="Utility\StringAdditions.cs" />
     <Compile Include="Utility\UnityResolver.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AppConfig.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -356,7 +367,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>49376</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost/MyFirstWebAPI</IISUrl>
+          <IISUrl>http://localhost:49376/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
