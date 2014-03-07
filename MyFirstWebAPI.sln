@@ -9,11 +9,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyFirstWebAPI.Tests", "MyFi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{87195AC7-5DB3-42DB-BE25-4110608CC3A6}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\DIwithUnitySample\.nuget\NuGet.Config = ..\..\DIwithUnitySample\.nuget\NuGet.Config
-		..\..\DIwithUnitySample\.nuget\NuGet.targets = ..\..\DIwithUnitySample\.nuget\NuGet.targets
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleProgram", "ConsoleProgram\ConsoleProgram.csproj", "{CAD42991-6690-4017-A3B5-ACD64F8C2364}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsTest", "WindowsFormsTest\WindowsFormsTest.csproj", "{67C76B40-0A59-4789-82A4-7DC2B16BE76F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +36,10 @@ Global
 		{CAD42991-6690-4017-A3B5-ACD64F8C2364}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CAD42991-6690-4017-A3B5-ACD64F8C2364}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CAD42991-6690-4017-A3B5-ACD64F8C2364}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67C76B40-0A59-4789-82A4-7DC2B16BE76F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67C76B40-0A59-4789-82A4-7DC2B16BE76F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67C76B40-0A59-4789-82A4-7DC2B16BE76F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67C76B40-0A59-4789-82A4-7DC2B16BE76F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

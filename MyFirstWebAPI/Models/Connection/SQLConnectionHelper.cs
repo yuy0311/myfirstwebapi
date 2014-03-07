@@ -14,7 +14,7 @@ namespace MyFirstWebAPI.Models.Connection
             this.module = module;
         }
 
-        public string connectionString()
+        public string connectionString(string optional = "")
         {
             return null;
         }

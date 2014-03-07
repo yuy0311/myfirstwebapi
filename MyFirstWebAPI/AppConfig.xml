@@ -11,17 +11,17 @@
     </Timetable>
     <SchoolAdmin source="sas">
       <server>YANG-WINX7\YANGSQLEXPRESS</server>
-      <db></db>
+      <db>MyFirstWebAPIDB2</db>
       <adintegrated>true</adintegrated>
       <username>sa</username>
       <password>1q2w3e4r</password>
     </SchoolAdmin>
     <RollMarking source="awms">
       <server>YANG-WINX7\YANGSQLEXPRESS</server>
-      <db></db>
+      <db>MyFirstWebAPIDB2</db>
       <adintegrated>true</adintegrated>
-      <username></username>
-      <password></password>
+      <username>sa</username>
+      <password>1q2w3e4r</password>
     </RollMarking>
   </Modules>
 </application>

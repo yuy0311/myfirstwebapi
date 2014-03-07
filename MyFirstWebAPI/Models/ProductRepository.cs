@@ -5,13 +5,15 @@ using System.Data.Entity;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using MyFirstWebAPI.Models.Products;
 using System.Linq.Expressions;
-using MyFirstWebAPI.Models.Orders;
 using System.Threading;
 using System.Data.Entity.Core.EntityClient;
+using MyFirstWebAPI.Models.Products;
+using MyFirstWebAPI.Models.Orders;
 using MyFirstWebAPI.Utility;
 using MyFirstWebAPI.Models.Connection;
+using MyFirstWebAPI.APIInterception;
+using Microsoft.Practices.EnterpriseLibrary.Logging.PolicyInjection;
 
 namespace MyFirstWebAPI.Models
 {
@@ -20,8 +22,7 @@ namespace MyFirstWebAPI.Models
         private MyFirstWebAPIDBEntities db;
         public ProductRepository(IDBConnection myconntection)
         {
-            //string connectionstr = ConnectionStringBuilder.getEntityConnectionStr(@"YANG-WINX7\YANGSQLEXPRESS","MyFirstWebAPIDB","Models.WebAPIModel","sa","1q2w3e4r");
-            EntityConnection connection = new EntityConnection(myconntection.connectionString());
+             EntityConnection connection = new EntityConnection(myconntection.connectionString());
              db = new MyFirstWebAPIDBEntities(connection);
         }
              
@@ -53,9 +54,11 @@ namespace MyFirstWebAPI.Models
                 details = x.OrderDetails.AsQueryable().Select(AsOrderDetailDTO)
             };
      
+        [LogCallHandler(Priority=9)]
         public IQueryable<ProductWrapper> GetAllProducts()
         {
-            return db.Products.Select(AsProductDto);
+           // return db.Products.Select(AsProductDto);
+            throw new NotImplementedException();
         }
 
         public Task<ProductWrapper> GetProductByID(int id)
@@ -71,6 +74,7 @@ namespace MyFirstWebAPI.Models
             return db.Orders.Select(ASOrderDto);
         }
 
+        [LoggingCallHandler(1)]
         public Task<OrderDataWrapper> GetOrderByID(int id)
         {
             return db.Orders

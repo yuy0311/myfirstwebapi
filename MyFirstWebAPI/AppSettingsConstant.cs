@@ -7,6 +7,7 @@ namespace MyFirstWebAPI
 {
     public class AppSettingsConstant
     {
+        public const string xmlfilepath = "~/AppConfig.xml";
         public const string IsTimeTableMultiply = "isMultiple";
         public const string ModuleSource = "source";
         public const string TimeTableModule = "Timetable";

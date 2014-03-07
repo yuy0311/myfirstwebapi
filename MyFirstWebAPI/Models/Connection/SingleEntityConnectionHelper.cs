@@ -20,7 +20,7 @@ namespace MyFirstWebAPI.Models.Connection
             this.module = module;
         }
 
-        public string connectionString()
+        public string connectionString(string optional="")
         {
             // underlying provider.
             SqlConnectionStringBuilder sqlBuilder =
@@ -34,7 +34,7 @@ namespace MyFirstWebAPI.Models.Connection
             {
                 if ((Boolean)o)
                 {
-                    sqlBuilder.IntegratedSecurity = true;//true;
+                    sqlBuilder.IntegratedSecurity = true;
                 }
                 else
                 {

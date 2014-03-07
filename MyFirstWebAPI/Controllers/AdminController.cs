@@ -12,18 +12,21 @@ using MyFirstWebAPI.Models;
 using System.Threading.Tasks;
 using MyFirstWebAPI.Models.Products;
 using MyFirstWebAPI.Utility;
-
+using System.Diagnostics;
+using MyFirstWebAPI.APIInterception;
+using Microsoft.Practices.EnterpriseLibrary.Logging;
+using Newtonsoft.Json;
 namespace MyFirstWebAPI.Controllers
 {
     [RoutePrefix("api/admin")]
     public class AdminController : ApiController
     {
         private IProductRepository repository;
-        private String controllerName;
-        public AdminController(IProductRepository repository, String controllerName)
+        private string controllername;
+        public AdminController(IProductRepository repository, string controllername)
         {
             this.repository = repository;
-            this.controllerName = controllerName;
+            this.controllername = controllername;
         }
       
         // GET api/Admin
@@ -42,7 +45,6 @@ namespace MyFirstWebAPI.Controllers
             {
                 return NotFound();
             }
-
             return Ok(product);
         }
 
@@ -56,7 +58,6 @@ namespace MyFirstWebAPI.Controllers
         }
 
         [Route("orders/{id:int}")]
-        [ResponseType(typeof(Order))]
         public  async Task<HttpResponseMessage> GetOrder(int id)
         {
             APIResponseWrapper ordersReturn = new APIResponseWrapper();
@@ -67,7 +68,8 @@ namespace MyFirstWebAPI.Controllers
             }
             ordersReturn.data = order;
             //return new APIActionResult(order,Request);
-            return Request.CreateResponse(HttpStatusCode.OK, ordersReturn);
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, ordersReturn);
+            return response;
         }
 
         [Route("orderLegacys/{id:int}")]

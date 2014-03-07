@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyFirstWebAPI.Models.Connection
+namespace MyFirstWebAPI.Models
 {
-    public interface IDBConnection
+    public interface IPeopleRepository
     {
-        string connectionString(string optional=""); 
+        int getStudentCampusID(int studentid);
     }
 }

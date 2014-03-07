@@ -11,7 +11,7 @@ namespace MyFirstWebAPI.Models.Utility
     {
         public static string getXMLValue(string module, string xmltag)
         {
-            String xmlfile = HttpContext.Current.Server.MapPath("~/AppConfig.xml");
+            String xmlfile = HttpContext.Current.Server.MapPath(AppSettingsConstant.xmlfilepath);
             XmlDocument xmldoc = new XmlDocument();
             xmldoc.Load(xmlfile);
             XmlNodeList elements = xmldoc.GetElementsByTagName(module);
@@ -29,7 +29,7 @@ namespace MyFirstWebAPI.Models.Utility
 
         public static string getAttributeValue(string module,string attribute)
         {
-            String xmlfile = HttpContext.Current.Server.MapPath("~/AppConfig.xml");
+            String xmlfile = HttpContext.Current.Server.MapPath(AppSettingsConstant.xmlfilepath);
             XmlDocument xmldoc = new XmlDocument();
             xmldoc.Load(xmlfile);
             XmlNodeList elements = xmldoc.GetElementsByTagName(module);

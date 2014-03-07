@@ -13,9 +13,12 @@ namespace MyFirstWebAPI
     {
         static void Main(string[] args)
         {
-            //Console.WriteLine("Hello WOrld");
-            AppConfigXMLParser.getXMLValue("Timetable", "server");
-            AppConfigXMLParser.getAttributeValue("Timetable", "name");
+            MyClass c = new MyClass();
+            Console.WriteLine(c.ReadValue().getMYName());
+            Console.WriteLine("Ni HAO SHANGHAI");
+         
+          //  AppConfigXMLParser.getXMLValue("Timetable", "server");
+          //  AppConfigXMLParser.getAttributeValue("Timetable", "name");
         }
     }
 
